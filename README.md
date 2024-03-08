@@ -11,4 +11,5 @@ Each project runs successfully in the following environment:
 * Microsoft Windows 11
 * Visual Studio Community 2022
 * ISO C++ 14
+
 If you meet compatibility problems, create one issue to explain it. 
