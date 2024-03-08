@@ -1,4 +1,4 @@
-#include "SeqList.h"
+#include "../DataSturcture/SeqList.h"
 #include <iostream>
 
 int main(void)
