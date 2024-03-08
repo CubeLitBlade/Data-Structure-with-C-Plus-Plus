@@ -15,8 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\1-1\SeqList.h">
+    <ClInclude Include="SeqList.h">
       <Filter>头文件</Filter>
-    </ClCompile>
+    </ClInclude>
   </ItemGroup>
 </Project>
