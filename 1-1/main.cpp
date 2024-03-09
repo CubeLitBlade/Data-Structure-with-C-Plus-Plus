@@ -3,9 +3,9 @@
 
 int main(void)
 {
-	char a[] = { '4','9','2','8','0','5','4','6','7','9' };						// 初始化字符数组，用于测试类。
+	char a[] = { '4','9','2','8','0','5','4','6','7','9' };		// 初始化字符数组，用于测试类。
 	
-	DataStructure::SeqList<char> L = DataStructure::SeqList<char>(a, 10);		// 通过数组构造SeqList。
+	DataStructure::SeqList<char> L = DataStructure::SeqList<char>(a, 10);	// 通过数组构造SeqList。
 
 	// 依次输出 SeqList 的各元素。
 	std::cout << std::endl << "Original SeqList: " << std::endl;
