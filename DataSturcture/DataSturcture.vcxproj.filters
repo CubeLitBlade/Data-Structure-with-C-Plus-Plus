@@ -18,7 +18,7 @@
     <ClInclude Include="SeqList.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DataStructureExpection.h">
+    <ClInclude Include="DataStructure.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
