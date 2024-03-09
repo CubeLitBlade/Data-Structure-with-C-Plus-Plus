@@ -16,6 +16,8 @@ namespace DataStructure
 		virtual size_t size() = 0;
 		// 获取数据结构某下标的元素。
 		virtual const T& get(size_t index) = 0;
+		// 从某下标写入数据。
+		virtual bool set(size_t index, const T& target) = 0;
 		// 查找数据结构内第一个相应元素的下标。
 		virtual size_t find(const T& target) = 0;
 		
