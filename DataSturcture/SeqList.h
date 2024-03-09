@@ -1,12 +1,5 @@
 #pragma once
-#include <stdexcept>
-
-namespace DataStructureExceptionPrompts
-{
-	const std::string NULLPTR_PARAMETER = "nullptr passed as parameter(s)";
-	const std::string BAD_INDEX = "index out of range";
-	const std::string ZERO_UNACCEPTABLE = "zero is unacceptable";
-}
+#include "DataStructureExpection.h"
 
 namespace DataStructure
 {
@@ -39,7 +32,7 @@ namespace DataStructure
 	{
 		if (length == 0)
 		{
-			throw std::invalid_argument(DataStructureExceptionPrompts::ZERO_UNACCEPTABLE);
+			throw std::invalid_argument(DataStructureException::ZERO_UNACCEPTABLE);
 		}
 		else
 		{
@@ -56,11 +49,11 @@ namespace DataStructure
 	{
 		if (target == nullptr)
 		{
-			throw std::invalid_argument(DataStructureExceptionPrompts::NULLPTR_PARAMETER);
+			throw std::invalid_argument(DataStructureException::NULLPTR_PARAMETER);
 		}
 		else if (length == 0)
 		{
-			throw std::invalid_argument(DataStructureExceptionPrompts::ZERO_UNACCEPTABLE);
+			throw std::invalid_argument(DataStructureException::ZERO_UNACCEPTABLE);
 		}
 		else
 		{
@@ -120,7 +113,7 @@ namespace DataStructure
 		if (index >= m_length)
 		{
 			// 下标超出范围时，抛出 std::out_of_range 异常。
-			throw std::out_of_range(DataStructureExceptionPrompts::BAD_INDEX);
+			throw std::out_of_range(DataStructureException::BAD_INDEX);
 		}
 		else
 		{
@@ -139,7 +132,6 @@ namespace DataStructure
 				return i;
 			}
 		}
-
 		return -1;
 	}
 
@@ -157,6 +149,7 @@ namespace DataStructure
 		}
 		else
 		{
+			// 从顺序表末尾依次将元素后移，达到下标处或 size_t 类型向下溢出时停止。
 			for (size_t i = m_length - 1; i >= index && i != static_cast<size_t>(-1); i--)
 			{
 				m_p[i + 1] = m_p[i];
