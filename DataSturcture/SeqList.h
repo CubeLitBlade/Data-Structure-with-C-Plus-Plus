@@ -142,7 +142,7 @@ namespace DataStructure
 		}
 	}
 
-	// 查找第一个特定元素所在的下标。若存在，返回对应下标；若不存在，返回 -1 。
+	// 查找第一个特定元素所在的下标。若存在，返回对应下标；若不存在，返回 SeqList<T>.length() 。
 	template<typename T>
 	size_t SeqList<T>::find(const T& target)
 	{
@@ -153,7 +153,7 @@ namespace DataStructure
 				return i;
 			}
 		}
-		return -1;
+		return this->m_length();
 	}
 
 	// 从相应下标处插入元素。成功返回 true ，失败返回 false 。若下标超出范围，抛出 std::out_of_range 异常。
