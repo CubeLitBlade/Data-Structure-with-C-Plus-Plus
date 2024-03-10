@@ -24,11 +24,14 @@ int main(void)
 			// 点到相应的 kids 时。
 			if (i == m)
 			{
-				i = 1;  // 重置计数器。
 				// 通过 for 循环将 index 修正到正确的位置。index 不可大于或等于 kids.length()，因此只需要不断减去 kids.length()。
 				for (; index >= kids.length(); index -= kids.length());
+
 				std::cout << kids.get(index) << " "; // 打印将被杀死的 kids 的序号。
 				kids.remove(index);  // 杀死此 kids。
+
+				i = 0;  // 重置计数器。
+				index--;  // 由于删除了元素，索引值自减使循环结束后自增还原下标。
 			}
 		}
 		catch (std::out_of_range& e)
@@ -36,7 +39,7 @@ int main(void)
 			// 当捕获到 std::out_of_range 异常时，输出错误信息，并且手动调用 void SeqList.reset() 方法释放内存，避免内存泄漏。
 			std::cerr << e.what();
 			kids.reset();
-			}
 		}
+	}
 	return 0;
 }
