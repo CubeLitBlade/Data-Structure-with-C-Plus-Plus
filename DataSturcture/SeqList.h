@@ -153,7 +153,7 @@ namespace DataStructure
 				return i;
 			}
 		}
-		return this->m_length();
+		return this->m_length;
 	}
 
 	// 从相应下标处插入元素。成功返回 true ，失败返回 false 。若下标超出范围，抛出 std::out_of_range 异常。
