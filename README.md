@@ -1,5 +1,19 @@
 # Data Structure with C Plus Plus
 
+**您在寻找中文的 README 文件副本吗？如果为 true ，请单击[这里](/README/README.zh_CN.md)。**
+
+## Contents
+- [Introduction](#introduction)
+- [How to use it?](#how-to-use-it)
+  - [File structure](#file-structure)
+  - [Get this repository](#get-this-repository)
+    - [Go with Git](#go-with-git)
+    - [Go with Visual Studio](#go-with-visual-studio)
+    - [Just download zip](#just-download-zip)
+- [Environment](#environment)
+
+
+
 ## Introduction
 Hey, guys! This is my version of experiment report of Hubei University, which contains simple implementations of some data strcutures using C++. However, I don't want it to be just a "workaround" for trial report. As a consequence, I published it, hoping it will be better. Please don't hesitate to share if you have a better idea for a part of. Of course, if you are learning about data strcutures, I hope this will help you.
 
