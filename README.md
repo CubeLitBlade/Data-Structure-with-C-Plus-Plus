@@ -5,15 +5,23 @@ Hey, guys! This is my version of experiment report of Hubei University, which co
 
 ## How to use it?
 ### File structure
-The core codes for data structures are placed in the folder "DataStructure" in the form of header files, which con. Each file corresponds to an implementation of a structure. As for number named folders, "X-X", contain easy demos based on these data strucutures classes. The goal to be accomplished by each demo will be commented at the beginning of the file. 
+The core codes for data structures are placed in the folder "DataStructure" in the form of header files, which con. Each file corresponds to an implementation of a structure. As for number named folders, "X-X", contain easy demos based on these data strucutures classes. Each project contains a markdown file "Topic X-X" to explain the goal of corresponding project. 
 
 ### Get this repository
-If you have installed "Git", you will be able to run the following command in Terminal to get it. 
+#### Go with Git
+If you have installed Git, you will be able to run the following command in **Terminal** to get it. 
 ```bash
 git clone https://github.com/CubeLitBlade/Data-Structure-with-C-Plus-Plus.git
 ```
-Of course, you can also click "Code", and then choose a way accessible to you. 
-![image](https://github.com/CubeLitBlade/Data-Structure-with-C-Plus-Plus/assets/135247075/80596f9a-1c44-4c03-a583-970f59a2e0ae)
+#### Go with Visual Studio
+If you have installed Visual Studio, you can **copy** the following link. 
+```bash
+https://github.com/CubeLitBlade/Data-Structure-with-C-Plus-Plus.git
+```
+Then launch your Visual Studio, click **"Clone a repository"**. Then **paste** the link to **"Repository location"** and choose the path to store it. Last, click **"Clone"**. 
+
+#### Just download zip
+If you want to download the source code simply, you can click **"<> Code"** on the repository page, then choose **"Download ZIP"**. 
 
 ## Environment
 Each project runs successfully in the following environment: 
@@ -21,4 +29,4 @@ Each project runs successfully in the following environment:
 * Visual Studio Community 2022
 * ISO C++ 14
 
-If you meet compatibility problems, create one issue to explain it. 
+If you meet compatibility problems, create one issue to report it. 
