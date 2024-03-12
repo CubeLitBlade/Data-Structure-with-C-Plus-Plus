@@ -55,7 +55,7 @@ namespace DataStructure
 	}
 
 	// 由数组创建顺序表。若传递的指针为 nullptr 或指定容量为 0 ，抛出 std::invalid_arument 异常。
-	template<typename T>
+	template <typename T>
 	inline SeqList<T>::SeqList(T* target, size_t size)
 	{
 		if (target == nullptr)
@@ -105,7 +105,7 @@ namespace DataStructure
 	}
 
 	// 获取顺序表的容量（即顺序表的最大长度）。
-	template<typename T>
+	template <typename T>
 	inline size_t SeqList<T>::size()
 	{
 		return this->m_size;
@@ -127,7 +127,7 @@ namespace DataStructure
 	}
 
 	// 设置特定下标的元素。成功返回 true ，失败返回 false 。若下标超出范围，抛出 std::out_of_range 异常。
-	template<typename T>
+	template <typename T>
 	bool SeqList<T>::set(size_t index, const T& target)
 	{
 		if (index >= this->m_length)
@@ -143,7 +143,7 @@ namespace DataStructure
 	}
 
 	// 查找第一个特定元素所在的下标。若存在，返回对应下标；若不存在，返回 SeqList<T>.length() 。
-	template<typename T>
+	template <typename T>
 	size_t SeqList<T>::find(const T& target)
 	{
 		for (size_t i = 0; i < this->m_length; i++)
@@ -157,7 +157,7 @@ namespace DataStructure
 	}
 
 	// 从相应下标处插入元素。成功返回 true ，失败返回 false 。若下标超出范围，抛出 std::out_of_range 异常。
-	template<typename T>
+	template <typename T>
 	bool SeqList<T>::insert(size_t index, const T& target)
 	{
 		if (this->m_length == this->m_size)
@@ -183,7 +183,7 @@ namespace DataStructure
 	}
 
 	// 移除特定下标处的元素。成功返回 true ，失败返回 false 。若下标超出范围，抛出 std::out_of_range 异常。
-	template<typename T>
+	template <typename T>
 	bool SeqList<T>::remove(size_t index)
 	{
 		if (index >= this->m_length)
@@ -202,7 +202,7 @@ namespace DataStructure
 	}
 
 	// 重置顺序表，将释放顺序表的内存。当你在使用此顺序表类时捕获任何异常，请调用此方法以避免内存泄漏。
-	template<typename T>
+	template <typename T>
 	inline void SeqList<T>::reset()
 	{
 		delete[] this->m_p;
