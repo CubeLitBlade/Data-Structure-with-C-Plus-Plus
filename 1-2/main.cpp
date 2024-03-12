@@ -27,7 +27,7 @@ int main(void)
 				// 通过 for 循环将 index 修正到正确的位置。index 不可大于或等于 kids.length()，因此只需要不断减去 kids.length()。
 				for (; index >= kids.length(); index -= kids.length());
 
-				std::cout << kids.get(index) << " "; // 打印将被杀死的 kids 的序号。
+				std::cout << kids.get(index); // 打印将被杀死的 kids 的序号。
 				kids.remove(index);  // 杀死此 kids。
 
 				i = 0;  // 重置计数器。
