@@ -15,7 +15,7 @@
 
 
 ## Introduction
-Hey, guys! This is my version of experiment report of Hubei University, which contains simple implementations of some data strcutures using C++. However, I don't want it to be just a "workaround" for trial report. As a consequence, I published it, hoping it will be better. Please don't hesitate to share if you have a better idea for a part of. Of course, if you are learning about data strcutures, I hope this will help you.
+Hey, guys! This is my version of experiment report of Hubei University, which contains simple implementations of some data strcutures using C++. I want each project to be relatively perfect, rather than just a "workaround", however, my programming skill are really limited so that some problems cannot be properly solved ,so don't hesitate to create a **pull request** if you have a better idea. If you happen to be studying data structure, hope you found this helpful. I hope we can all make progress. 
 
 ## How to use it?
 ### File structure
