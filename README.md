@@ -1,6 +1,6 @@
 # Data Structure with C Plus Plus
 
-**您在寻找中文的 README 文件副本吗？如果为 true ，请单击[这里](/README/README.zh_CN.md)。**
+> **您在寻找中文的 README 文件副本吗？如果为 true ，请单击[这里](/README/README.zh_CN.md)。**
 
 ## Contents
 - [Introduction](#introduction)
@@ -10,6 +10,7 @@
     - [Go with Git](#go-with-git)
     - [Go with Visual Studio](#go-with-visual-studio)
     - [Just download zip](#just-download-zip)
+  - [Permission](#permission)
 - [Environment](#environment)
 
 
@@ -19,8 +20,11 @@ Hey, guys! This is my version of experiment report of Hubei University, which co
 
 ## How to use it?
 ### File structure
-The core codes for data structures are placed in the folder "DataStructure" in the form of header files, which con. Each file corresponds to an implementation of a structure. As for number named folders, "X-X", contain easy demos based on these data strucutures classes. Each project contains a markdown file "Topic X-X" to explain the goal of corresponding project. 
-
+- **"DataStructure" Folder:** contains header files defined by data structure classes.
+- **Numbered Folders (X-Y):**
+  - **`Topic X-Y.md`:** explains the goal of this project.
+  - **`main.cpp`:** accomplishes the corresponding goal.
+ 
 ### Get this repository
 #### Go with Git
 If you have installed Git, you will be able to run the following command in **Terminal** to get it. 
@@ -37,10 +41,16 @@ Then launch your Visual Studio, click **"Clone a repository"**. Then **paste** t
 #### Just download zip
 If you want to download the source code simply, you can click **"<> Code"** on the repository page, then choose **"Download ZIP"**. 
 
-## Environment
-Each project runs successfully in the following environment: 
-* Microsoft Windows 11
-* Visual Studio Community 2022
-* ISO C++ 14
+## Permission
+Luckily, with *MIT License*, you would be **able to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the this software and associated documentation files (the "Software")**. However, **copyright notice and this permission notice shall be included in all copies or substantial portions of the Software**. See [LICENSE](LICENSE.txt) for more details. 
 
-If you meet compatibility problems, create one issue to report it. 
+## Environment
+Each project runs successfully in the following environment:
+|Item        |Environment                                 |
+| :--------: | :----------------------------------------: |
+|OS          |Microsoft Windows 11                        |
+|System Type |64-bit operating system, x64-based processor|
+|IDE         |Microsoft Visual Studio Community 2022      |
+|C++ Standard|ISO C++ 14                                  |
+
+If you meet compatibility problems, create one **issue** to report it. 
