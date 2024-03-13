@@ -9,17 +9,17 @@ namespace DataStructure
 	{
 	public:
 		// 判定数据结构是否为空。
-		virtual bool empty() = 0;
+		virtual bool empty() const = 0;
 		// 获取数据结构的长度。
-		virtual size_t length() = 0;
+		virtual size_t length() const = 0;
 		// 获取数据结构的容量。
-		virtual size_t size() = 0;
+		virtual size_t size() const = 0;
+		// 查找数据结构内第一个相应元素的下标。
+		virtual size_t find(const T& target) const = 0;
 		// 获取数据结构某下标的元素。
-		virtual const T& get(size_t index) = 0;
+		virtual const T& get(size_t index) const = 0;
 		// 从某下标写入数据。
 		virtual bool set(size_t index, const T& target) = 0;
-		// 查找数据结构内第一个相应元素的下标。
-		virtual size_t find(const T& target) = 0;
 		
 	protected:
 		T* m_p = nullptr;	// 数据指针，默认为空指针。
