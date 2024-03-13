@@ -12,6 +12,7 @@
     - [Just download zip](#just-download-zip)
   - [Permission](#permission)
 - [Environment](#environment)
+- [Acknowledgement](#acknowledgement)
 
 
 
@@ -20,9 +21,9 @@ Hey, guys! This is my version of experiment report of Hubei University, which co
 
 ## How to use it?
 ### File structure
-- **"DataStructure" Folder:** contains header files defined by data structure classes.
-- **Numbered Folders (X-Y):**
-  - **`Topic X-Y.md`:** explains the goal of this project.
+- **"Data Structure" Folder:** contains header files defined by data structure classes.
+- **"[*Data Structure Class Name*] - XXX" Folder:**
+  - **`Topic.md`:** explains the goal of this project.
   - **`main.cpp`:** accomplishes the corresponding goal.
  
 ### Get this repository
@@ -54,3 +55,9 @@ Each project runs successfully in the following environment:
 |C++ Standard|ISO C++ 14                                  |
 
 If you meet compatibility problems, create one **issue** to report it. 
+
+## Acknowledgement
+Special thanks to the following contributors to this repository. 
+|Contributors                          |Contributuons                     |
+| :----------------------------------: | :------------------------------: |
+|[@KepWalk](https://github.com/KepWalk)|`SeqList_AC1::QuickPrefixNegative`|
