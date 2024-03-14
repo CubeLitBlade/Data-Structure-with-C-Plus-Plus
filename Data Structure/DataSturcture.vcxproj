@@ -132,6 +132,9 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="SeqList.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="SeqList.md" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
