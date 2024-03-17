@@ -1,37 +1,40 @@
-# SeqList.h
-´ËÎÄ¼ş¶¨ÒåÁËË³Ğò±íµÄ¼òµ¥ÊµÏÖ¡£Àà¾ù¶¨ÒåÔÚ`DataStructure`ÃüÃû¿Õ¼äÄÚ¡£
+# SeqList.hpp
 
-## SeqListIterator Àà
-|·½·¨ÁĞ±í|¼ò½é|
-| :---------------------------------------------------------------------: | :-------------------------------: |
-|`SeqListIterator(T* ptr);`                                               |ÀûÓÃÔªËØÖ¸Õë¹¹Ôìµü´úÆ÷¡£|
-|`T& operator*() override;`                                               |·µ»Øµü´úÆ÷ËùÖ¸ÔªËØµÄÒıÓÃ¡£|
-|`const T& operator*() const override`                                    |·µ»Øµü´úÆ÷ËùÖ¸ÔªËØµÄ `const` ÒıÓÃ¡£|
-|`SeqListIterator& operator++() override;`                                |Ê¹µü´úÆ÷ÏòºóË÷Òı²¢·µ»ØÔªËØµÄÒıÓÃ¡£|
-|`SeqListIterator& operator++(int) override;`                             |·µ»Øµ±Ç°ÔªËØµÄÒıÓÃ²¢Ê¹µü´úÆ÷ÏòºóË÷Òı¡£|
-|`bool operator!=(const DataStructureIterator<T>& target) const override;`|ÅĞ¶ÏÁ½¸öµü´úÆ÷ËùÖ¸µÄÔªËØÊÇ·ñ²»ÎªÍ¬Ò»ÔªËØ¡£|
-|`bool operator==(const DataStructureIterator<T>& target) const override;`|ÅĞ¶ÏÁ½¸öµü´úÆ÷ËùÖ¸µÄÔªËØÊÇ·ñÎªÍ¬Ò»ÔªËØ¡£|
+æ­¤æ–‡ä»¶å®šä¹‰äº†é¡ºåºè¡¨çš„ç®€å•å®ç°ã€‚ç±»å‡å®šä¹‰åœ¨ `DataStructure` å‘½åç©ºé—´å†…ã€‚
 
-## SeqList Àà
-|·½·¨ÁĞ±í|¼ò½é|
-| :----------------------------------------------------------: | :-----------------: |
-|`SeqList(size_t size);`                                       |¸ù¾İ´óĞ¡¹¹½¨Ë³Ğò±í¡£|
-|`SeqList(T* target, size_t size);`                            |ÀûÓÃÊı×é¹¹ÔìË³Ğò±í¡£|
-|`SeqList<T>::SeqList(const SeqList& target);`                 |ÀûÓÃÁíÒ»¸öË³Ğò±í¸´ÖÆ¹¹Ôì¡£|
-|`~SeqList() override;`                                        |Îö¹¹Ë³Ğò±í¡£|
-|`SeqList<T>& SeqList<T>::operator=(SeqList target);`          |Íê³ÉË³Ğò±í¼äµÄ¸³Öµ¡£|
-|`SeqListIterator<T> begin();`                                 |·µ»Ø `begin()` µü´úÆ÷¡£|
-|`SeqListIterator<T> end();`                                   |·µ»Ø `end()` µü´úÆ÷¡£|
-|`bool empty() const override;`                                |ÅĞ¶ÏË³Ğò±íÊÇ·ñÎª¿Õ¡£|
-|`size_t length() const override;`                             |·µ»ØË³Ğò±íµÄ³¤¶È¡£|
-|`size_t size() const override;`                               |·µ»ØË³Ğò±íµÄÈİÁ¿¡£|
-|`SeqListIterator<T> SeqList<T>::find(const T& target) const;` |ÔÚË³Ğò±íÖĞ²éÕÒÖ¸¶¨ÔªËØ¡£|
-|`const T& get(size_t index) const override;`                  |·µ»ØÖ¸¶¨ÏÂ±êµÄÔªËØ¡£|
-|`bool set(size_t index, const T& target) override;`           |Éè¶¨Ö¸¶¨ÏÂ±êµÄÔªËØ¡£|
-|`bool add(const T& target) override;`                         |´ÓË³Ğò±íÎ²²¿Ìí¼ÓÔªËØ¡£|
-|`bool insert(size_t index, const T& target);`                 |´ÓÖ¸¶¨ÏÂ±ê´¦²åÈëÔªËØ¡£|
-|`bool remove(size_t index);`                                  |ÒÆ³ıÖ¸¶¨ÏÂ±ê´¦µÄÔªËØ¡£|
-|`SeqListIterator<T> begin()`                                  |·µ»Ø `begin()` µü´úÆ÷¡£|
-|`SeqListIterator<T> end()`                                    |·µ»Ø `end()` µü´úÆ÷¡£|
-|`void reset();`                                               |ÖØÖÃË³Ğò±í¡£|
+## SeqListIterator ç±»
 
+|æˆå‘˜åˆ—è¡¨|å¯è§æ€§|ç®€ä»‹|
+| :---------------------------------------------------------------------- | :-----: | :-------------------------------- |
+|`SeqListIterator(T* ptr);`                                               |`public` |åˆ©ç”¨å…ƒç´ æŒ‡é’ˆæ„é€ è¿­ä»£å™¨ã€‚|
+|`T& operator*() override;`                                               |`public` |è¿”å›è¿­ä»£å™¨æ‰€æŒ‡å…ƒç´ çš„å¼•ç”¨ã€‚|
+|`const T& operator*() const override`                                    |`public` |è¿”å›è¿­ä»£å™¨æ‰€æŒ‡å…ƒç´ çš„ `const` å¼•ç”¨ã€‚|
+|`SeqListIterator& operator++() override;`                                |`public` |ä½¿è¿­ä»£å™¨å‘åç´¢å¼•å¹¶è¿”å›å…ƒç´ çš„å¼•ç”¨ã€‚|
+|`SeqListIterator& operator++(int) override;`                             |`public` |è¿”å›å½“å‰å…ƒç´ çš„å¼•ç”¨å¹¶ä½¿è¿­ä»£å™¨å‘åç´¢å¼•ã€‚|
+|`bool operator!=(const DataStructureIterator<T>& target) const override;`|`public` |åˆ¤æ–­ä¸¤ä¸ªè¿­ä»£å™¨æ‰€æŒ‡çš„å…ƒç´ æ˜¯å¦ä¸ä¸ºåŒä¸€å…ƒç´ ã€‚|
+|`bool operator==(const DataStructureIterator<T>& target) const override;`|`public` |åˆ¤æ–­ä¸¤ä¸ªè¿­ä»£å™¨æ‰€æŒ‡çš„å…ƒç´ æ˜¯å¦ä¸ºåŒä¸€å…ƒç´ ã€‚|
+|`T& m_ptr`                                                               |`private`|è¿­ä»£å™¨å½“å‰æ‰€æŒ‡å‘çš„å…ƒç´ çš„åœ°å€ã€‚|
+
+## SeqList ç±»
+
+|æˆå‘˜åˆ—è¡¨|å¯è§æ€§|ç®€ä»‹|
+| :----------------------------------------------------------------- | :----: | :------------------ |
+|`SeqList(size_t size);`                                             |`public`|æ ¹æ®å¤§å°æ„å»ºé¡ºåºè¡¨ã€‚|
+|`SeqList(T* target, size_t size);`                                  |`public`|åˆ©ç”¨æ•°ç»„æ„é€ é¡ºåºè¡¨ã€‚|
+|`SeqList<T>::SeqList(const SeqList& target);`                       |`public`|åˆ©ç”¨å¦ä¸€ä¸ªé¡ºåºè¡¨å¤åˆ¶æ„é€ ã€‚|
+|`~SeqList() override;`                                              |`public`|ææ„é¡ºåºè¡¨ã€‚|
+|`SeqList<T>& SeqList<T>::operator=(SeqList target);`                |`public`|å®Œæˆé¡ºåºè¡¨é—´çš„èµ‹å€¼ã€‚|
+|`SeqListIterator<T> begin();`                                       |`public`|è¿”å› `begin()` è¿­ä»£å™¨ã€‚|
+|`SeqListIterator<T> end();`                                         |`public`|è¿”å› `end()` è¿­ä»£å™¨ã€‚|
+|`bool empty() const override;`                                      |`public`|åˆ¤æ–­é¡ºåºè¡¨æ˜¯å¦ä¸ºç©ºã€‚|
+|`size_t length() const override;`                                   |`public`|è¿”å›é¡ºåºè¡¨çš„é•¿åº¦ã€‚|
+|`size_t size() const override;`                                     |`public`|è¿”å›é¡ºåºè¡¨çš„å®¹é‡ã€‚|
+|`SeqListIterator<T> SeqList<T>::find(const T& target) const;`       |`public`|åœ¨é¡ºåºè¡¨ä¸­æŸ¥æ‰¾æŒ‡å®šå…ƒç´ ã€‚|
+|`const T& get(size_t index) const override;`                        |`public`|è¿”å›æŒ‡å®šç´¢å¼•çš„å…ƒç´ ã€‚|
+|`bool set(size_t index, const T& target) override;`                 |`public`|è®¾å®šæŒ‡å®šç´¢å¼•çš„å…ƒç´ ã€‚|
+|`bool add(const T& target) override;`                               |`public`|ä»é¡ºåºè¡¨å°¾éƒ¨æ·»åŠ å…ƒç´ ã€‚|
+|`bool insert(size_t index, const T& target);`                       |`public`|ä»æŒ‡å®šä¸‹æ ‡å¤„æ’å…¥å…ƒç´ ã€‚|
+|`bool remove(size_t index);`                                        |`public`|ç§»é™¤æŒ‡å®šä¸‹æ ‡å¤„çš„å…ƒç´ ã€‚|
+|`size_t iterator_to_index(const SeqListIterator<T> iterator) const;`|`public`|è¿”å›è¿­ä»£å™¨å¯¹åº”çš„ç´¢å¼•ã€‚|
+|`SeqListIterator<T> index_to_iterator(size_t index) const;`         |`public`|è¿”å›ç´¢å¼•å¯¹åº”çš„è¿­ä»£å™¨ã€‚|
+|`void reset();`                                                     |`public`|é‡ç½®é¡ºåºè¡¨ã€‚|

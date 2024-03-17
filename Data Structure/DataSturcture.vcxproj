@@ -105,6 +105,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,11 +129,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DataStructure.h" />
-    <ClInclude Include="List.h" />
-    <ClInclude Include="SeqList.h" />
+    <ClInclude Include="DataStructure.hpp" />
+    <ClInclude Include="List.hpp" />
+    <ClInclude Include="SeqList.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataStructure.md" />
+    <None Include="List.md" />
     <None Include="SeqList.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

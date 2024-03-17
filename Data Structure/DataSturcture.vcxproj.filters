@@ -15,18 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SeqList.h">
+    <ClInclude Include="DataStructure.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DataStructure.h">
+    <ClInclude Include="SeqList.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="List.h">
+    <ClInclude Include="List.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="SeqList.md">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="DataStructure.md">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="List.md">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>
