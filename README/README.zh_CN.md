@@ -64,7 +64,7 @@ https://github.com/CubeLitBlade/Data-Structure-with-C-Plus-Plus.git
 |操作系统|Microsoft Windows 11|
 |系统类型|64 位操作系统，基于 x64 的处理器|
 |集成开发环境|Microsoft Visual Studio Community 2022|
-|C++ 语言标准|ISO C++ 14 标准|
+|C++ 语言标准|ISO C++ 20 标准|
 
 如果您遇到了兼容性问题，请创建一个 **Issue** 报告此问题以便于排查。
 

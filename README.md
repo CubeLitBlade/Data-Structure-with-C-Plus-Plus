@@ -64,7 +64,7 @@ Each project runs successfully in the following environment:
 |OS          |Microsoft Windows 11                        |
 |System Type |64-bit operating system, x64-based processor|
 |IDE         |Microsoft Visual Studio Community 2022      |
-|C++ Standard|ISO C++ 14                                  |
+|C++ Standard|ISO C++ 20                                  |
 
 If you meet compatibility problems, create one **issue** to report it.  
 

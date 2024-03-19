@@ -7,6 +7,7 @@ namespace DataStructure
 	/**
 	 * \brief 顺序表迭代器类，派生自数据结构迭代器类。
 	 * \tparam T 迭代器所指向的顺序表数据类型。
+	 * \todo 完善迭代器使其满足std::random_access_iterator的条件。
 	 */
 	template <typename T>
 	class SeqListIterator final : public DataStructureIterator<T>
@@ -18,6 +19,10 @@ namespace DataStructure
 
 		SeqListIterator& operator++() override;
 		SeqListIterator& operator++(int) override;
+		SeqListIterator& operator--();
+		SeqListIterator& operator--(int);
+
+		std::strong_ordering operator<=>(const SeqListIterator& target) const;
 		bool operator!=(const DataStructureIterator<T>& target) const override;
 		bool operator==(const DataStructureIterator<T>& target) const override;
 
@@ -110,6 +115,50 @@ namespace DataStructure
 	}
 
 	/**
+	 * \brief 使此迭代器指向上一个元素后返回此迭代器。
+	 * \return 当前迭代器的引用。
+	 */
+	template <typename T>
+	SeqListIterator<T>& SeqListIterator<T>::operator--()
+	{
+		--m_ptr;
+		return *this;
+	}
+
+	/**
+	 * \brief 返回此迭代器的副本，然后使迭代器指向上一个元素。
+	 * \return 当前迭代器的副本的引用。
+	 */
+	template <typename T>
+	SeqListIterator<T>& SeqListIterator<T>::operator--(int)
+	{
+		SeqListIterator<T> it = *this;   ///< 创建此迭代器的副本，返回此副本即可。
+		--*this;
+		return it;
+	}
+
+	/**
+	 * \brief 
+	 * \return 
+	 */
+	template <typename T>
+	std::strong_ordering SeqListIterator<T>::operator<=>(const SeqListIterator& target) const
+	{
+		if(m_ptr < target.m_ptr)
+		{
+			return std::strong_ordering::less;
+		}
+		else if(m_ptr > target.m_ptr)
+		{
+			return std::strong_ordering::greater;
+		}
+		else
+		{
+			return std::strong_ordering::equal;
+		}
+	}
+
+	/**
 	 * \brief 比较当前迭代器与目标迭代器是否指向不同元素。
 	 * \param target 目标迭代器。
 	 * \return 如果当前迭代器与目标迭代器指向不同元素则返回 true ；否则返回 false 。
@@ -188,7 +237,6 @@ namespace DataStructure
 				this->m_data[i] = target[i];
 			}
 		}
-
 	}
 
 	/**
