@@ -5,8 +5,8 @@
 namespace DataStructure
 {
 	/**
-	 * \brief 链表的节点类。包含下一个节点的地址、上一个节点的地址和保存的元素。
-	 * \tparam T 元素的类型。
+	 * @brief 链表的节点类。包含下一个节点的地址、上一个节点的地址和保存的元素。
+	 * @tparam T 元素的类型。
 	 */
 	template <typename T>
 	class ListNode
@@ -20,8 +20,8 @@ namespace DataStructure
 	};
 
 	/**
-	 * \brief 链表的迭代器类，派生自数据结构迭代器类。
-	 * \tparam T 迭代器所指向的链表数据类型。
+	 * @brief 链表的迭代器类，派生自数据结构迭代器类。
+	 * @tparam T 迭代器所指向的链表数据类型。
 	 */
 	template <typename T>
 	class ListIterator final : public DataStructureIterator<T>
@@ -33,7 +33,7 @@ namespace DataStructure
 		const T& operator*() const override;
 		
 		ListIterator& operator++() override;
-		ListIterator& operator++(int) override;
+		ListIterator operator++(int);
 		ListIterator& operator--();
 		ListIterator& operator--(int);
 		
@@ -47,8 +47,8 @@ namespace DataStructure
 	};
 
 	/**
-	 * \brief 链表类，派生自数据结构类。
-	 * \tparam T 链表所存储数据的类型。
+	 * @brief 链表类，派生自数据结构类。
+	 * @tparam T 链表所存储数据的类型。
 	 */
 	template <typename T>
 	class List final : public DataStructure<T>
@@ -68,13 +68,13 @@ namespace DataStructure
 		ListIterator<T> rev_end();
 		ListIterator<T> rev_end() const;
 
-		bool empty() const override;
-		size_t length() const override;
+		bool Empty() const override;
+		size_t Length() const override;
 		size_t size() const override;
 		ListIterator<T> find(const T& target);
-		const T& get(size_t index) const override;
-		bool set(size_t index, const T& target) override;
-		bool add(const T& target) override;
+		const T& Get(size_t index) const override;
+		bool Set(size_t index, const T& target) override;
+		bool Add(const T& target) override;
 
 		bool he_add(const T& target);
 		bool insert(size_t index, const T& target);
@@ -88,44 +88,44 @@ namespace DataStructure
 
 
 	/**
-	 * \brief 
-	 * \param prev 指向前一个节点的指针。
-	 * \param next 指向后一个节点的指针。
-	 * \param data 所保存的元素。
+	 * @brief 
+	 * @param prev 指向前一个节点的指针。
+	 * @param next 指向后一个节点的指针。
+	 * @param data 所保存的元素。
 	 */
 	template <typename T>
 	ListNode<T>::ListNode(ListNode<T>* prev, ListNode<T>* next, const T& data) : m_prev(prev), m_next(next), m_data(data) {}
 
 	/**
-	 * \brief 创建指向特定节点的迭代器。
-	 * \param ptr 指向对应节点的指针。
+	 * @brief 创建指向特定节点的迭代器。
+	 * @param ptr 指向对应节点的指针。
 	 */
 	template <typename T>
 	ListIterator<T>::ListIterator(ListNode<T>* ptr): m_ptr(ptr) {}
 
 	/**
-	 * \brief 返回迭代器所指向节点元素的引用。
-	 * \return 迭代器所指向的节点元素的引用。
+	 * @brief 返回迭代器所指向节点元素的引用。
+	 * @return 迭代器所指向的节点元素的引用。
 	 */
 	template <typename T>
 	T& ListIterator<T>::operator*()
 	{
-		return m_ptr->m_data;
+		return m_ptr->data_ptr_;
 	}
 
 	/**
-	 * \brief 返回迭代器所指向节点元素的 const 引用。
-	 * \return 迭代器所指向的节点元素的 const 引用。
+	 * @brief 返回迭代器所指向节点元素的 const 引用。
+	 * @return 迭代器所指向的节点元素的 const 引用。
 	 */
 	template <typename T>
 	const T& ListIterator<T>::operator*() const
 	{
-		return m_ptr->m_data;
+		return m_ptr->data_ptr_;
 	}
 
 	/**
-	 * \brief 使此迭代器指向下一个元素后返回此迭代器。
-	 * \return 当前迭代器的引用。
+	 * @brief 使此迭代器指向下一个元素后返回此迭代器。
+	 * @return 当前迭代器的引用。
 	 */
 	template <typename T>
 	ListIterator<T>& ListIterator<T>::operator++()
@@ -135,11 +135,11 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 返回此迭代器的副本，然后使迭代器指向下一个元素。
-	 * \return 当前迭代器的副本的引用。
+	 * @brief 返回此迭代器的副本，然后使迭代器指向下一个元素。
+	 * @return 当前迭代器的副本的引用。
 	 */
 	template <typename T>
-	ListIterator<T>& ListIterator<T>::operator++(int)
+	ListIterator<T> ListIterator<T>::operator++(int)
 	{
 		ListIterator<T> it = *this;   ///< 创建此迭代器的副本，返回此副本即可。
 		++*this;
@@ -147,8 +147,8 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 使此迭代器指向上一个元素后返回此迭代器。
-	 * \return 当前迭代器的引用。
+	 * @brief 使此迭代器指向上一个元素后返回此迭代器。
+	 * @return 当前迭代器的引用。
 	 */
 	template <typename T>
 	ListIterator<T>& ListIterator<T>::operator--()
@@ -158,8 +158,8 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 返回此迭代器的副本，然后使迭代器指向上一个元素。
-	 * \return 当前迭代器的副本的引用。
+	 * @brief 返回此迭代器的副本，然后使迭代器指向上一个元素。
+	 * @return 当前迭代器的副本的引用。
 	 */
 	template <typename T>
 	ListIterator<T>& ListIterator<T>::operator--(int)
@@ -170,9 +170,9 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 比较当前迭代器与目标迭代器是否指向不同节点。
-	 * \param target 目标迭代器。
-	 * \return 如果当前迭代器与目标迭代器指向不同元素则返回 true ；否则返回 false 。
+	 * @brief 比较当前迭代器与目标迭代器是否指向不同节点。
+	 * @param target 目标迭代器。
+	 * @return 如果当前迭代器与目标迭代器指向不同元素则返回 true ；否则返回 false 。
 	 */
 	template <typename T>
 	bool ListIterator<T>::operator!=(const DataStructureIterator<T>& target) const
@@ -182,9 +182,9 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 比较当前迭代器与目标迭代器是否指向同一节点。
-	 * \param target 目标迭代器。
-	 * \return 如果当前迭代器与目标迭代器指向同一节点则返回 true ；否则返回 false 。
+	 * @brief 比较当前迭代器与目标迭代器是否指向同一节点。
+	 * @param target 目标迭代器。
+	 * @return 如果当前迭代器与目标迭代器指向同一节点则返回 true ；否则返回 false 。
 	 */
 	template <typename T>
 	bool ListIterator<T>::operator==(const DataStructureIterator<T>& target) const
@@ -194,8 +194,8 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 返回下一个元素所对应的迭代器。
-	 * \return 下一个元素所对应的迭代器。
+	 * @brief 返回下一个元素所对应的迭代器。
+	 * @return 下一个元素所对应的迭代器。
 	 */
 	template <typename T>
 	ListIterator<T> ListIterator<T>::next()
@@ -204,8 +204,8 @@ namespace DataStructure
 	}
 
 	/**
-	* \brief 返回上一个元素所对应的迭代器。
-	* \return 上一个元素所对应的迭代器。
+	* @brief 返回上一个元素所对应的迭代器。
+	* @return 上一个元素所对应的迭代器。
 	*/
 	template <typename T>
 	ListIterator<T> ListIterator<T>::prev()
@@ -214,7 +214,7 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 创建空链表。
+	 * @brief 创建空链表。
 	 */
 	template <typename T>
 	List<T>::List()
@@ -224,8 +224,8 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 由已有链表复制构造新的链表。
-	 * \param target 待复制的链表。
+	 * @brief 由已有链表复制构造新的链表。
+	 * @param target 待复制的链表。
 	 */
 	template <typename T>
 	List<T>::List(const List& target)
@@ -234,13 +234,13 @@ namespace DataStructure
 		m_tail = m_head;
 		for(ListIterator<T> victim = ++target.begin(), it = begin(); victim != target.end(); ++victim, ++it)
 		{
-			it.m_ptr->m_next = new ListNode<T>(it.m_ptr, nullptr, *victim);
-			m_tail = it.m_ptr->m_next;
+			it.iterator_ptr_->m_next = new ListNode<T>(it.iterator_ptr_, nullptr, *victim);
+			m_tail = it.iterator_ptr_->m_next;
 		}
 	}
 
 	/**
-	 * \brief 删除链表并释放其占用的内存。
+	 * @brief 删除链表并释放其占用的内存。
 	 */
 	template <typename T>
 	List<T>::~List()
@@ -249,15 +249,15 @@ namespace DataStructure
 		for(ListIterator<T> it = prev; it != rev_end(); it = prev)
 		{
 			--prev;
-			delete it.m_ptr;
-			it.m_ptr = nullptr;
+			delete it.iterator_ptr_;
+			it.iterator_ptr_ = nullptr;
 		}
 	}
 
 	/**
-	 * \brief 将目标链表的所有属性和元素复制到当前数据表。
-	 * \param target 目标链表。
-	 * \return 此链表的引用。
+	 * @brief 将目标链表的所有属性和元素复制到当前数据表。
+	 * @param target 目标链表。
+	 * @return 此链表的引用。
 	 */
 	template <typename T>
 	List<T>& List<T>::operator=(List target)
@@ -267,8 +267,8 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 获取链表的 begin 迭代器。
-	 * \return 指向链表第一个元素的迭代器。
+	 * @brief 获取链表的 begin 迭代器。
+	 * @return 指向链表第一个元素的迭代器。
 	 */
 	template <typename T>
 	ListIterator<T> List<T>::begin()
@@ -283,8 +283,8 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 获取链表的 end 迭代器。
-	 * \return 指向链表最后一个元素后的迭代器。
+	 * @brief 获取链表的 end 迭代器。
+	 * @return 指向链表最后一个元素后的迭代器。
 	 */
 	template <typename T>
 	ListIterator<T> List<T>::end()
@@ -299,8 +299,8 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 获取链表的反向 begin 迭代器。
-	 * \return 指向链表最后一个元素的迭代器。
+	 * @brief 获取链表的反向 begin 迭代器。
+	 * @return 指向链表最后一个元素的迭代器。
 	 */
 	template <typename T>
 	ListIterator<T> List<T>::rev_begin()
@@ -315,8 +315,8 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 获取链表的反向 end 迭代器。
-	 * \return 指向链表第一个元素前的迭代器。
+	 * @brief 获取链表的反向 end 迭代器。
+	 * @return 指向链表第一个元素前的迭代器。
 	 */
 	template <typename T>
 	ListIterator<T> List<T>::rev_end()
@@ -331,21 +331,21 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 判断此链表是否为空表。
-	 * \return 如果此链表为空表，返回 true ；否则返回 false 。
+	 * @brief 判断此链表是否为空表。
+	 * @return 如果此链表为空表，返回 true ；否则返回 false 。
 	 */
 	template <typename T>
-	bool List<T>::empty() const
+	bool List<T>::Empty() const
 	{
 		return this->m_head == nullptr;
 	}
 
 	/**
-	 * \brief 获取链表的长度。
-	 * \return 链表内的元素个数。
+	 * @brief 获取链表的长度。
+	 * @return 链表内的元素个数。
 	 */
 	template <typename T>
-	size_t List<T>::length() const
+	size_t List<T>::Length() const
 	{
 		size_t length = 0;
 		for(const T value : *this)
@@ -356,8 +356,8 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 获取链表的容量。
-	 * \return 链表内的元素个数。
+	 * @brief 获取链表的容量。
+	 * @return 链表内的元素个数。
 	 */
 	template <typename T>
 	size_t List<T>::size() const
@@ -371,9 +371,9 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 在链表中查找目标元素。
-	 * \param target 目标元素。
-	 * \return 如果存在目标元素，返回指向第一个目标元素的迭代器；若不存在，返回 end 迭代器。
+	 * @brief 在链表中查找目标元素。
+	 * @param target 目标元素。
+	 * @return 如果存在目标元素，返回指向第一个目标元素的迭代器；若不存在，返回 end 迭代器。
 	 */
 	template <typename T>
 	ListIterator<T> List<T>::find(const T& target)
@@ -389,13 +389,13 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 获取链表目标索引节点的元素。
-	 * \param index 目标索引。
-	 * \return 索引节点的元素。
-	 * \exception index_out_of_range 若索引超出范围，抛出此异常。
+	 * @brief 获取链表目标索引节点的元素。
+	 * @param index 目标索引。
+	 * @return 索引节点的元素。
+	 * @exception index_out_of_range 若索引超出范围，抛出此异常。
 	 */
 	template <typename T>
-	const T& List<T>::get(size_t index) const
+	const T& List<T>::Get(size_t index) const
 	{
 		for (ListIterator<T> it = begin(); it != end(); ++it, --index)
 		{
@@ -404,18 +404,18 @@ namespace DataStructure
 				return *it;
 			}
 		}
-		throw DataStructureException::index_out_of_range();
+		throw DataStructureException::IndexOutOfRange();
 	}
 
 	/**
-	 * \brief 设置链表目标索引节点的元素。
-	 * \param index 目标索引。
-	 * \param target 待设定的元素。
-	 * \return 若设定成功，返回 true；否则返回 false。
-	 * \exception index_out_of_range 若索引超出范围，抛出此异常。
+	 * @brief 设置链表目标索引节点的元素。
+	 * @param index 目标索引。
+	 * @param target 待设定的元素。
+	 * @return 若设定成功，返回 true；否则返回 false。
+	 * @exception index_out_of_range 若索引超出范围，抛出此异常。
 	 */
 	template <typename T>
-	bool List<T>::set(size_t index, const T& target)
+	bool List<T>::Set(size_t index, const T& target)
 	{
 		for (ListIterator<T> it = begin(); it != end(); ++it, --index)
 		{
@@ -425,18 +425,18 @@ namespace DataStructure
 				return true;
 			}
 		}
-		throw DataStructureException::index_out_of_range();
+		throw DataStructureException::IndexOutOfRange();
 	}
 
 	/**
-	 * \brief 从链表尾部插入目标元素。
-	 * \param target 目标元素。
-	 * \return 若元素插入成功，返回 true；否则返回 false。
+	 * @brief 从链表尾部插入目标元素。
+	 * @param target 目标元素。
+	 * @return 若元素插入成功，返回 true；否则返回 false。
 	 */
 	template <typename T>
-	bool List<T>::add(const T& target)
+	bool List<T>::Add(const T& target)
 	{
-		if (empty())
+		if (Empty())
 		{
 			try
 			{
@@ -455,8 +455,8 @@ namespace DataStructure
 			{
 				ListIterator<T> it = begin();
 				while (it.next() != end()) ++it;
-				it.m_ptr->m_next = new ListNode<T>(it.m_ptr, nullptr, target);
-				m_tail = it.m_ptr->m_next;
+				it.iterator_ptr_->m_next = new ListNode<T>(it.iterator_ptr_, nullptr, target);
+				m_tail = it.iterator_ptr_->m_next;
 				return true;
 			}
 			catch (std::bad_alloc&)
@@ -467,9 +467,9 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 从链表头部插入目标元素。
-	 * \param target 目标元素。
-	 * \return 若元素插入成功，返回 true；否则返回 false。
+	 * @brief 从链表头部插入目标元素。
+	 * @param target 目标元素。
+	 * @return 若元素插入成功，返回 true；否则返回 false。
 	 */
 	template <typename T>
 	bool List<T>::he_add(const T& target)
@@ -487,11 +487,11 @@ namespace DataStructure
 	}
 
 	/**
-	 * \brief 从目标索引处插入目标元素。
-	 * \param index 目标索引。
-	 * \param target 目标元素。
-	 * \return 若元素插入成功则返回 true；否则返回 false。
-	 * \exception index_out_of_range 若索引超出范围，抛出此异常。
+	 * @brief 从目标索引处插入目标元素。
+	 * @param index 目标索引。
+	 * @param target 目标元素。
+	 * @return 若元素插入成功则返回 true；否则返回 false。
+	 * @exception index_out_of_range 若索引超出范围，抛出此异常。
 	 */
 	template <typename T>
 	bool List<T>::insert(size_t index, const T& target)
@@ -508,7 +508,7 @@ namespace DataStructure
 				{
 					try
 					{
-						it.m_ptr->m_next = new ListNode<T>(it.m_ptr->m_next, target);
+						it.iterator_ptr_->m_next = new ListNode<T>(it.iterator_ptr_->m_next, target);
 						return true;
 					}
 					catch (std::bad_alloc&)
@@ -518,28 +518,28 @@ namespace DataStructure
 				}
 			}
 		}
-		throw DataStructureException::index_out_of_range();
+		throw DataStructureException::IndexOutOfRange();
 	}
 
 	/**
-	 * \brief 移除目标索引处的元素。
-	 * \param index 目标索引。
-	 * \return 若移除成功，返回 true；否则返回 false。
-	 * \exception access_empty_container 当容器为空时，抛出此异常。
-	 * \exception index_out_of_range 当索引超出范围时，抛出此异常。
+	 * @brief 移除目标索引处的元素。
+	 * @param index 目标索引。
+	 * @return 若移除成功，返回 true；否则返回 false。
+	 * @exception access_empty_container 当容器为空时，抛出此异常。
+	 * @exception index_out_of_range 当索引超出范围时，抛出此异常。
 	 */
 	template <typename T>
 	bool List<T>::remove(size_t index)
 	{
 		if (m_head == nullptr)
 		{
-			throw DataStructureException::access_empty_container();
+			throw DataStructureException::AccessEmptyContainer();
 		}
 		else if (index == 0)
 		{
 			ListIterator<T> it = begin();
-			m_head = it.m_ptr->m_next;
-			delete it.m_ptr;
+			m_head = it.iterator_ptr_->m_next;
+			delete it.iterator_ptr_;
 			return true;
 		}
 		else
@@ -548,18 +548,18 @@ namespace DataStructure
 			{
 				if (index == 1)
 				{
-					auto victim = it.m_ptr->m_next;
-					it.m_ptr->m_next = victim->m_next;
+					auto victim = it.iterator_ptr_->m_next;
+					it.iterator_ptr_->m_next = victim->m_next;
 					delete victim;
 					return true;
 				}
 			}
 		}
-		throw DataStructureException::index_out_of_range();
+		throw DataStructureException::IndexOutOfRange();
 	}
 
 	/**
-	 * \brief 重置链表。将释放链表所占用的内存。
+	 * @brief 重置链表。将释放链表所占用的内存。
 	 * \note 如果您在使链表方法时捕获到异常，请调用此方法避免内存泄漏。
 	 */
 	template <typename T>
@@ -569,8 +569,8 @@ namespace DataStructure
 		for (ListIterator<T> it = prev; it != rev_end(); it = prev)
 		{
 			--prev;
-			delete it.m_ptr;
-			it.m_ptr = nullptr;
+			delete it.iterator_ptr_;
+			it.iterator_ptr_ = nullptr;
 		}
 	};
 }
