@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Development test project
+/Development Test
+
+# Doxygen config file
+Doxyfile
