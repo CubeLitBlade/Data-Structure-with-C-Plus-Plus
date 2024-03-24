@@ -14,34 +14,45 @@ namespace DataStructure
       * @tparam T 迭代器所指向的顺序表数据类型。
       */
     template <typename T>
-    class SeqListIterator final : public DataStructureIterator<T>
+    class SeqListIterator final : public DataStructureIteratorBase<T>
     {
-        /** 声明 SeqListIterator 的友元。 */
-        template <typename U> friend SeqListIterator<U> operator+(const SeqListIterator<U>& iterator, int n);
-        template <typename U> friend SeqListIterator<U> operator-(const SeqListIterator<U>& iterator, int n);
-        template <typename U> friend int operator-(const SeqListIterator<U>& iteratorL, const SeqListIterator<U>& iteratorR);
-
     public:
-        SeqListIterator(const SeqList<T>& target, size_t index);
+        /** 设置用于 iterator_trait 的类型。 */
+        using value_type = T;
+        using difference_type = std::ptrdiff_t;
+        using pointer = T*;
+        using reference = T&;
+        using iterator_category = std::random_access_iterator_tag;
+
+        /** SeqListIterator 的构造函数。*/
+        SeqListIterator() = default;
+        SeqListIterator(const SeqList<value_type>& target, size_t index);
         SeqListIterator(const SeqListIterator& target);
 
-        const T& operator*() const override;
-        T& operator*() override;
-        T& operator[](int index);
+        /** SeqListIterator 的公用方法。*/
+        const reference operator*() const;
+        reference operator*();
+        reference operator[](difference_type index) const;
         SeqListIterator& operator=(SeqListIterator target);
-        SeqListIterator& operator++() override;
+        SeqListIterator& operator++();
         SeqListIterator operator++(int);
         SeqListIterator& operator--();
         SeqListIterator operator--(int);
-        SeqListIterator& operator+=(int offset);
-        SeqListIterator& operator-=(int offset);
+        SeqListIterator operator+(difference_type offset) const;
+        SeqListIterator operator-(difference_type offset) const;
+        SeqListIterator& operator+=(difference_type offset);
+        SeqListIterator& operator-=(difference_type offset);
         bool operator==(const SeqListIterator& target) const;
         std::strong_ordering operator<=>(const SeqListIterator& target) const;
 
     private:
-        T* IteratorPtr = nullptr; ///< 迭代器所指向的元素。
-        const T* IteratorLowerBound; ///< 迭代器下界，即 begin 迭代器所指的地址。
-        const T* IteratorUpperBound; ///< 迭代器上界，即 end 迭代器所指的地址。
+        pointer IteratorPtr = nullptr; ///< 迭代器所指向的元素。
+        pointer IteratorLowerBound = nullptr; ///< 迭代器下界，即 begin 迭代器所指的地址。
+        pointer IteratorUpperBound = nullptr; ///< 迭代器上界，即 end 迭代器所指的地址。
+
+        /** 声明 SeqListIterator 的友元。 */
+        template <typename U> friend SeqListIterator<U> operator+(difference_type n, const SeqListIterator<U>& iterator);
+        template <typename U> friend difference_type operator-(const SeqListIterator<U>& iteratorL, const SeqListIterator<U>& iteratorR);
     };
 
     /**
@@ -49,7 +60,7 @@ namespace DataStructure
      * @tparam T 顺序表所存储数据的类型。
      */
     template <typename T>
-    class SeqList final : public DataStructure<T>
+    class SeqList final : public DataStructureBase<T>
     {
         /** 声明 SeqList 的友元。 */
         friend class SeqListIterator<T>;
@@ -89,7 +100,7 @@ namespace DataStructure
      * @exception IteratorOutOfBounds 如果传入的索引会使迭代器对于此顺序表越界，抛出此异常。
      */
     template <typename T>
-    SeqListIterator<T>::SeqListIterator(const SeqList<T>& target, size_t index)
+    SeqListIterator<T>::SeqListIterator(const SeqList<value_type>& target, size_t index)
         : IteratorPtr(target.DataPtr + index), IteratorLowerBound(target.DataPtr),
           IteratorUpperBound(target.DataPtr + target.Len)
     {
@@ -101,7 +112,7 @@ namespace DataStructure
      * @brief 复制构造顺序表。
      */
     template <typename T>
-    SeqListIterator<T>::SeqListIterator(const SeqListIterator<T>& target)
+    SeqListIterator<T>::SeqListIterator(const SeqListIterator& target)
     {
         IteratorPtr = target.IteratorPtr;
         IteratorLowerBound = target.IteratorLowerBound;
@@ -114,7 +125,7 @@ namespace DataStructure
     * @exception IteratorAccessEnd 如果尝试对 end 迭代器解引用，抛出此异常。
     */
     template <typename T>
-    const T& SeqListIterator<T>::operator*() const
+    const typename::DataStructure::SeqListIterator<T>::reference SeqListIterator<T>::operator*() const
     {
         if (IteratorPtr == IteratorUpperBound) ///< 如果迭代器为 end 迭代器则抛出异常。
             throw DataStructureException::IteratorAccessEnd();
@@ -127,7 +138,7 @@ namespace DataStructure
      * @exception IteratorAccessEnd 如果尝试对 end 迭代器解引用，抛出此异常。
      */
     template <typename T>
-    T& SeqListIterator<T>::operator*()
+    typename::DataStructure::SeqListIterator<T>::reference SeqListIterator<T>::operator*()
     {
         if (IteratorPtr == IteratorUpperBound) ///< 如果迭代器为 end 迭代器则抛出异常。
             throw DataStructureException::IteratorAccessEnd();
@@ -140,7 +151,7 @@ namespace DataStructure
      * @return 对应元素的引用。
      */
     template <typename T>
-    T& SeqListIterator<T>::operator[](int index)
+    typename::DataStructure::SeqListIterator<T>::reference SeqListIterator<T>::operator[](difference_type index) const
     {
         return *(IteratorPtr + index); ///< 在加法运算符和解引用运算符中已经会检测异常，故不检测。
     }
@@ -218,13 +229,41 @@ namespace DataStructure
     }
 
     /**
+     * @brief 返回此迭代器与偏移量加算后的迭代器。
+     * @param offset 偏移量。
+     * @return 加算后的迭代器。
+     */
+    template <typename T>
+    SeqListIterator<T> SeqListIterator<T>::operator+(difference_type offset) const
+    {
+
+        SeqListIterator result = SeqListIterator(*this);
+        result += offset;
+        return result;
+    }
+
+    /**
+     * @brief 返回此迭代器与偏移量减算后的迭代器。
+     * @param offset 偏移量。
+     * @return 减后的迭代器。
+     */
+    template <typename T>
+    SeqListIterator<T> SeqListIterator<T>::operator-(difference_type offset) const
+    {
+
+        SeqListIterator result = SeqListIterator(*this);
+        result -= offset;
+        return result;
+    }
+
+    /**
      * @brief 使此迭代器所指向的位置与偏移量加算后返回自身的引用。
      * @param offset 偏移量。
      * @return 此迭代器的引用。
      * @exception IteratorOutOfBounds 如果迭代器访问越界，抛出此异常。
      */
     template <typename T>
-    SeqListIterator<T>& SeqListIterator<T>::operator+=(int offset)
+    SeqListIterator<T>& SeqListIterator<T>::operator+=(difference_type offset)
     {
         IteratorPtr += offset;
         if (IteratorPtr < IteratorLowerBound || IteratorPtr > IteratorUpperBound) ///< 判断越界，如果越界则抛出异常。
@@ -241,7 +280,7 @@ namespace DataStructure
      * @exception IteratorOutOfBounds 如果迭代器访问越界，抛出此异常。
      */
     template <typename T>
-    SeqListIterator<T>& SeqListIterator<T>::operator-=(int offset)
+    SeqListIterator<T>& SeqListIterator<T>::operator-=(difference_type offset)
     {
         IteratorPtr -= offset;
         if (IteratorPtr < IteratorLowerBound || IteratorPtr > IteratorUpperBound) ///< 判断越界，如果越界则抛出异常。
@@ -294,25 +333,10 @@ namespace DataStructure
      * @return 经过加算后对应位置的迭代器。
      */
     template <typename U>
-    SeqListIterator<U> operator+(const SeqListIterator<U>& iterator, int n)
+    SeqListIterator<U> operator+(std::ptrdiff_t n, const SeqListIterator<U>& iterator)
     {
         SeqListIterator<U> result = SeqListIterator<U>(iterator);
         result += n;
-        return result;
-    }
-
-    /**
-     * @brief 返回迭代器所指向的位置与偏移量减算后所对应的迭代器。
-     * @tparam U 数据类型。
-     * @param iterator 被减数迭代器。
-     * @param n 偏移量。
-     * @return 经过减算后对应位置的迭代器。
-     */
-    template <typename U>
-    SeqListIterator<U> operator-(const SeqListIterator<U>& iterator, int n)
-    {
-        SeqListIterator<U> result = SeqListIterator<U>(iterator);
-        result -= n;
         return result;
     }
 
@@ -324,7 +348,7 @@ namespace DataStructure
      * @return 两个迭代器所指位置的索引差值。
      */
     template <typename U>
-    int operator-(const SeqListIterator<U>& iteratorL, const SeqListIterator<U>& iteratorR)
+    std::ptrdiff_t operator-(const SeqListIterator<U>& iteratorL, const SeqListIterator<U>& iteratorR)
     {
         return iteratorL.IteratorPtr - iteratorR.IteratorPtr;
     }

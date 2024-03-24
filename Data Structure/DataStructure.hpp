@@ -8,14 +8,14 @@ namespace DataStructure
      * @tparam T 数据类型。
      */
     template <typename T>
-    class DataStructureIterator
+    class DataStructureIteratorBase
     {
     public:
-		virtual ~DataStructureIterator() {};
-        virtual T& operator*() = 0;
-        virtual const T& operator*() const = 0;
-        virtual DataStructureIterator& operator++() = 0;
-        // virtual DataStructureIterator operator++(int) = 0;
+		virtual ~DataStructureIteratorBase() {};
+        // virtual T& operator*() = 0;
+        // virtual const T& operator*() const = 0;
+        // virtual DataStructureIteratorBase& operator++() = 0;
+        // virtual DataStructureIteratorBase operator++(int) = 0;
     };
 
     /**
@@ -23,10 +23,10 @@ namespace DataStructure
      * @tparam T 数据类型。
      */
     template <typename T>
-    class DataStructure
+    class DataStructureBase
     {
     public:
-		virtual ~DataStructure() {}
+		virtual ~DataStructureBase() {}
         virtual bool Empty() const = 0;
         virtual size_t Length() const = 0;
         virtual size_t size() const = 0;
