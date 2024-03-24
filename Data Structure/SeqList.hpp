@@ -23,23 +23,20 @@ namespace DataStructure
 
     public:
         SeqListIterator(const SeqList<T>& target, size_t index);
-        SeqListIterator(const SeqListIterator<T>& target);
+        SeqListIterator(const SeqListIterator& target);
 
         const T& operator*() const override;
         T& operator*() override;
         T& operator[](int index);
-        SeqListIterator& operator=(SeqListIterator<T> target);
+        SeqListIterator& operator=(SeqListIterator target);
         SeqListIterator& operator++() override;
         SeqListIterator operator++(int);
         SeqListIterator& operator--();
         SeqListIterator operator--(int);
         SeqListIterator& operator+=(int offset);
         SeqListIterator& operator-=(int offset);
+        bool operator==(const SeqListIterator& target) const;
         std::strong_ordering operator<=>(const SeqListIterator& target) const;
-
-        /** 这些方法将在不久后废除。 */
-        bool operator!=(const DataStructureIterator<T>& target) const override;
-        bool operator==(const DataStructureIterator<T>& target) const override;
 
     private:
         T* IteratorPtr = nullptr; ///< 迭代器所指向的元素。
@@ -255,6 +252,17 @@ namespace DataStructure
     }
 
     /**
+     * @brief 比较此迭代器与目标迭代器是否相等。
+     * @param target 目标迭代器。
+     * @return 如果相等，则返回 true；否则返回 false。
+     */
+    template <typename T>
+    bool SeqListIterator<T>::operator==(const SeqListIterator& target) const
+    {
+        return IteratorPtr == target.IteratorPtr;
+    }
+
+    /**
      * @brief 此迭代器的三路比较运算符，用于比较此迭代器与目标迭代器所指内存地址的位置关系。
      * @param target 目标迭代器。
      * @return 如果此迭代器的指向的地址在目标迭代器之前，返回 std::strong_ordering::less；
@@ -276,33 +284,6 @@ namespace DataStructure
         {
             return std::strong_ordering::equal;
         }
-    }
-
-    /**
-     * @brief 比较当前迭代器与目标迭代器是否指向不同元素。
-     * @param target 目标迭代器。
-     * @return 如果当前迭代器与目标迭代器指向不同元素则返回 true ；否则返回 false 。
-     * @deprecated 功能将被 operator<=> 取代。
-     */
-    template <typename T>
-    bool SeqListIterator<T>::operator!=(const DataStructureIterator<T>& target) const
-    {
-        const SeqListIterator& temp = dynamic_cast<const SeqListIterator&>(target);
-        ///< 使用类型转换将 target 转换为 DataStructureIterator 类型。
-        return IteratorPtr != temp.IteratorPtr;
-    }
-
-    /**
-     * @brief 比较当前迭代器与目标迭代器是否指向同一元素。
-     * @param target 目标迭代器。
-     * @return 如果当前迭代器与目标迭代器指向同一元素则返回 true ；否则返回 false 。
-     * @deprecated 功能将被 operator<=> 取代。
-     */
-    template <typename T>
-    bool SeqListIterator<T>::operator==(const DataStructureIterator<T>& target) const
-    {
-        const SeqListIterator& temp = dynamic_cast<const SeqListIterator&>(target); ///< 同上，不多赘述。
-        return IteratorPtr == temp.IteratorPtr;
     }
 
     /**
